@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_linear);
+        setContentView(R.layout.activity_main_constraint);
 
-        Button button = (Button) findViewById(R.id.button6);
+        Button button = (Button) findViewById(R.id.button);
         String toastMessage=MainActivity.this.getResources().getString(R.string.toast_message);
         String buttonText=MainActivity.this.getResources().getString(R.string.ButtonText);
         String checkBox=MainActivity.this.getResources().getString(R.string.check_box);
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        Switch mySwitch = (Switch) findViewById(R.id.switch1);
+        Switch mySwitch = (Switch) findViewById(R.id.switch2);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton cb, boolean b) {
 
