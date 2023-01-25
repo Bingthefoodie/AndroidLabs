@@ -9,4 +9,12 @@
     <string name="hint_message">Enter name here</string>
     <string name="snack_bar">The switch is now</string>
     <string name="undo_label">Undo</string>
-    </resources>
+    <string name="lab3mainactivity">Main Activity</string>
+    <string name="lab3emailhint">Enter your email</string>
+    <string name="lab3passwordhint">Enter your password</string>
+    <string name="lab3buttontext">Login</string>
+    <string name="lab3profileactivity">Profile Activity</string>
+    <string name="lab3enteremailhint">Enter your email</string>
+    <string name="lab3entername">Enter your name</string>
+    <string name="lab3takepicture">Take picture</string>
+</resources>

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         String hintMessage=MainActivity.this.getResources().getString(R.string.hint_message);
         String snackBarMessage=MainActivity.this.getResources().getString(R.string.snack_bar);
         String unDo=MainActivity.this.getResources().getString(R.string.undo_label);
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, toastMessage, Toast.LENGTH_LONG).show();
