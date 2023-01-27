@@ -29,20 +29,20 @@ public class MainActivity extends AppCompatActivity {
         EditText send_email = findViewById(R.id.editText2);
 
         btn.setOnClickListener(new View.OnClickListener() {
-
+            @Override
             public void onClick(View v) {
                 String str = send_email.getText().toString();
                 Intent i = new Intent(MainActivity.this, ProfileActivity.class);
                 i.putExtra("email", str);
-                startActivity(i);
+                MainActivity.this.startActivity(i);
             }
         });
     }
-     private void dispatchTakePictureIntent () {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            ActivityResultLauncher<Intent> myPictureTakerLauncher=null;
-            myPictureTakerLauncher.launch(takePictureIntent);
-        }
-    }
+//     private void dispatchTakePictureIntent () {
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//            ActivityResultLauncher<Intent> myPictureTakerLauncher=null;
+//            myPictureTakerLauncher.launch(takePictureIntent);
+//        }
+//    }
 }
