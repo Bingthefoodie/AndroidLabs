@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Labs de Android</string>
-    <string name="hello_message">Bonjour!</string>
-    <string name="ButtonText">Cliquez ici</string>
-    <string name="lab2_title">Lab deux</string>
-    <string name="check_box">regarde ça</string>
-    <string name="switch_onoff">Communateur Allumer / Arreter</string>
-    <string name="toast_message">Voila quelque information</string>
-    <string name="hint_message">Entrez votre nom</string>
-    <string name="snack_bar">La communateur est maintenant</string>
-    <string name="undo_label">defaire</string>
+    <string name="app_name">Android Labs</string>
+    <string name="lab3mainactivity">Main Activity</string>
+    <string name="lab3emailhint">Entrez votre email</string>
+    <string name="lab3passwordhint">Entrez votre mot de pass</string>
+    <string name="lab3buttontext">Ouvrir</string>
+    <string name="lab3profileactivity">Profile Activity</string>
+    <string name="lab3enteremailhint">Entrez votre email</string>
+    <string name="lab3entername">Entrez votre nom</string>
+    <string name="lab3takepicture">Prend une photo</string>
 </resources>
