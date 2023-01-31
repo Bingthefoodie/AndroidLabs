@@ -38,11 +38,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-//     private void dispatchTakePictureIntent () {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            ActivityResultLauncher<Intent> myPictureTakerLauncher=null;
-//            myPictureTakerLauncher.launch(takePictureIntent);
-//        }
-//    }
 }

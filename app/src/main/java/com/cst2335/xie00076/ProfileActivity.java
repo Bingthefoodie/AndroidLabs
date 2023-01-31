@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         Log.e(TAG,"In function: " + "onCreate");
         TextView receiver_msg;
         /*get the value of email from the main activity page*/
-        receiver_msg=findViewById(R.id.editText2);
+        receiver_msg=findViewById(R.id.editText3);
         //create the get intent object
         Intent intent=getIntent();
         //receive the value by getStringExtra() method and
