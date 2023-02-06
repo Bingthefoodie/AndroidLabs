@@ -57,8 +57,8 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
         android:layout_marginBottom="150dp"
         android:text="@string/lab3buttontext"
 

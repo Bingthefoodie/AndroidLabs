@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android Labs</string>
-    <string name="lab3mainactivity">Main Activity</string>
+    <string name="app_name">Android Labs Lab 4</string>
+    <string name="lab3mainactivity"> Activity Main</string>
     <string name="lab3emailhint">Entrez votre email</string>
-    <string name="lab3passwordhint">Entrez votre mot de pass</string>
-    <string name="lab3buttontext">Ouvrir</string>
-    <string name="lab3profileactivity">Profile Activity</string>
-    <string name="lab3enteremailhint">Entrez votre email</string>
-    <string name="lab3entername">Entrez votre nom</string>
-    <string name="lab3takepicture">Prend une photo</string>
+    <string name="lab3passwordhint">Entrez votre mot de passe</string>
+    <string name="lab3buttontext">Enregistre</string>
+    <string name="lab4profileactivity">Ton profile</string>
+    <string name="lab4enteremailhint">Entrez votre email</string>
+    <string name="lab4entername">Entrez votrs nom</string>
+    <string name="lab4address">Addresse</string>
+    <string name="lab4savedata">SAUVE DATA</string>
+    <string name="lab4cleardata">QUITTER DATA</string>
 </resources>
