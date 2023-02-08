@@ -3,8 +3,10 @@ package com.cst2335.xie00076;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
+
     //private MainActivityBinding variableBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +47,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
