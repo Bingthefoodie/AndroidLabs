@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello_message">Bonjour!</string>
-    <string name="ButtonText">Je suis un button</string>
+    <string name="app_name">Android Labs</string>
+    <string name="password">Type your password</string>
+    <string name="login">Login</string>
+
 </resources>
