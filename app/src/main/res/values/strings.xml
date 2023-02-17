@@ -1,13 +1,6 @@
 <resources>
-    <string name="app_name">Android Labs Lab 4</string>
-    <string name="lab3mainactivity">Main Activity</string>
-    <string name="lab3emailhint">Enter your email</string>
-    <string name="lab3passwordhint">Enter your password</string>
-    <string name="lab3buttontext">Login</string>
-    <string name="lab4profileactivity">Your profile</string>
-    <string name="lab4enteremailhint">Enter your email</string>
-    <string name="lab4entername">Enter your name</string>
-    <string name="lab4address">Address</string>
-    <string name="lab4savedata">SAVE DATA</string>
-    <string name="lab4cleardata">CLEAR DATA</string>
+    <string name="app_name">Android Labs</string>
+    <string name="password">Type your password</string>
+    <string name="login">Login</string>
+
 </resources>
