@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class ChatRoom extends AppCompatActivity {
 
     //ChatMessage chat = new ChatMessage("","",false);
 
-    SimpleDateFormat sdf= new SimpleDateFormat("EEEE, dd-mmm-yyyy hh-mm-ss a");
+    SimpleDateFormat sdf= new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
     String currentTime= sdf.format(new Date());
 
     @Override
@@ -49,8 +50,9 @@ public class ChatRoom extends AppCompatActivity {
         binding.sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("ChatRoom","send button clicked");
                 String message = binding.textInput.getText().toString();
-               // boolean sentButton = true;
+                // boolean sentButton = true;
                 ChatMessage chat = new ChatMessage(message, currentTime, true);
                 messages.add(chat);
                 myAdapter.notifyItemInserted(messages.size() - 1);
@@ -62,9 +64,10 @@ public class ChatRoom extends AppCompatActivity {
         binding.receiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("ChatRoom","receive button clicked");
                 String message = binding.textInput.getText().toString();
-               // boolean sentButton = false;
-               ChatMessage chat = new ChatMessage(message, currentTime, false);
+                // boolean sentButton = false;
+                ChatMessage chat = new ChatMessage(message, currentTime, false);
                 messages.add(chat);
                 myAdapter.notifyItemInserted(messages.size() - 1);
                 //clear the previous text
@@ -83,8 +86,8 @@ public class ChatRoom extends AppCompatActivity {
                     SentMessageBinding binding = SentMessageBinding.inflate(getLayoutInflater());
                     return new MyRowHolder(binding.getRoot());
                 }else{
-                   ReceiveMessageBinding binding=ReceiveMessageBinding.inflate(getLayoutInflater());
-                  return new MyRowHolder(binding.getRoot());
+                    ReceiveMessageBinding binding=ReceiveMessageBinding.inflate(getLayoutInflater());
+                    return new MyRowHolder(binding.getRoot());
                 }
             }
 
@@ -117,7 +120,7 @@ public class ChatRoom extends AppCompatActivity {
     }
 
 
-     class MyRowHolder extends RecyclerView.ViewHolder {
+    class MyRowHolder extends RecyclerView.ViewHolder {
         TextView messageText;
         TextView timeText;
 
