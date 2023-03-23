@@ -8,5 +8,8 @@
     <string name="no">No</string>
     <string name="delete">You deleted message:  </string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textViewMessage">Messages</string>
+    <string name="textViewDatabaseID">Database id</string>
+    <string name="textViewDate">Database Date</string>
+    <string name="checkBoxSentOrReceive">Message sent</string>
 </resources>

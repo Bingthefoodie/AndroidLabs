@@ -148,8 +148,7 @@ public class ListFragment extends Fragment {
 
             @Override
             public int getItemViewType(int position) {
-                ChatMessage chatMessage = messages.get(position);
-                if (chatMessage.getIsSentButton()) {
+                if (messages.get(position).getIsSentButton()) {
                     return 0;
                 } else {
                     return 1;

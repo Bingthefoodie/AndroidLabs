@@ -8,5 +8,10 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete">You deleted message: </string>
+    <string name="textViewMessage">Message</string>
+    <string name="textViewDatabaseID">Dababase id</string>
+    <string name="textViewDate">Database Date</string>
+    <string name="checkBoxSentOrReceive">Message Envoyer</string>
+
 
 </resources>
