@@ -18,4 +18,7 @@ public interface ChatMessageDAO {
 
     @Delete
     void deleteMessage(ChatMessage m);
+
+    @Query("DELETE FROM ChatMessage WHERE message= :message and timeSent = :timeSent and sendOrReceive = :sentOrReceive")
+    void deleteMessage( String message, String timeSent, boolean sentOrReceive);
 }

@@ -12,7 +12,8 @@ import Data.ChatMessage;
     public abstract class MessageDatabase extends RoomDatabase {
         private static MessageDatabase minstance;
         private static final String DB_NAME = "ChatMessage";
-        public abstract ChatMessageDAO getChatMessageDAO();
+
+        public abstract ChatMessageDAO chatMessageDAO();
         public static synchronized MessageDatabase getInstance(Context ctx) {
             if(minstance == null) {
                 minstance = Room.databaseBuilder(ctx.getApplicationContext(),

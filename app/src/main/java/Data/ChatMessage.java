@@ -20,7 +20,7 @@ public class ChatMessage {
     @NonNull
     @ColumnInfo(name="id")
     public int id;
-
+    //public static int idCounter = 0;
     public ChatMessage (){}
 
     public String getMessage() {
@@ -52,5 +52,10 @@ public class ChatMessage {
         message=m;
         timeSent=t;
         isSentButton=sent;
+       // id = idCounter++;
+    }
+
+    public int getID() {
+        return id;
     }
 }

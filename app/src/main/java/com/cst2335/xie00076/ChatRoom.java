@@ -3,6 +3,7 @@ package com.cst2335.xie00076;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.cst2335.xie00076.databinding.ActivityChatRoomBinding;
@@ -28,150 +30,47 @@ import java.util.concurrent.Executors;
 import Data.ChatMessage;
 import Data.ChatRoomViewModel;
 
-public class ChatRoom extends AppCompatActivity {
-    ActivityChatRoomBinding binding;
-    ChatRoomViewModel chatModel;
-    private RecyclerView.Adapter myAdapter;
-    ArrayList<ChatMessage> messages;
-    private ChatMessageDAO mDao;
-    SimpleDateFormat sdf= new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
-    String currentTime= sdf.format(new Date());
+public class ChatRoom extends AppCompatActivity implements ListFragment.OnItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityChatRoomBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_chat_room);
 
-        MessageDatabase db = MessageDatabase.getInstance(this);
-        mDao = db.getChatMessageDAO();
+        //verify if frame layout2 is loaded
+        FrameLayout fl2 = findViewById(R.id.frameLayout2);
+        FragmentManager fm = getSupportFragmentManager();
 
-        binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
+        //create fragments
+        ListFragment lf = new ListFragment();
+        DetailsFragment df = new DetailsFragment();
 
-        chatModel = new ViewModelProvider(this).get(ChatRoomViewModel.class);
-        messages= chatModel.messages.getValue();
 
-       // messages= new ArrayList<>();
-
-        if(messages==null){
-            chatModel.messages.postValue(messages= new ArrayList<ChatMessage>());
+        //this is for a phone
+        if (fl2 == null) {
+            fm.beginTransaction().add(R.id.frameLayout1, lf).commit();
         }
 
-        binding.sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("ChatRoom","send button clicked");
-                String message = binding.textInput.getText().toString();
-                // boolean sentButton = true;
-                ChatMessage chat = new ChatMessage(message, currentTime, true);
-                messages.add(chat);
-                myAdapter.notifyItemInserted(messages.size() - 1);
-                //clear the previous text
-                binding.textInput.setText("");
-
-                Executor thread = Executors.newSingleThreadExecutor();
-                thread.execute(()-> {
-                    mDao.insertMessage(chat);});
-            }
-        });
-
-
-        binding.receiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("ChatRoom","receive button clicked");
-                String message = binding.textInput.getText().toString();
-                // boolean sentButton = false;
-                ChatMessage chat = new ChatMessage(message, currentTime, false);
-                messages.add(chat);
-                myAdapter.notifyItemInserted(messages.size() - 1);
-                //clear the previous text
-                binding.textInput.setText("");
-
-                Executor thread = Executors.newSingleThreadExecutor();
-                thread.execute(()-> {
-                    mDao.insertMessage(chat);});
-            }
-        });
-
-
-        binding.recycleView.setAdapter(myAdapter=new RecyclerView.Adapter<MyRowHolder>() {
-
-            @NonNull
-            @Override
-            //this creates the view holder, it represents a single row in the list
-            public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                if(viewType==0) {
-                    SentMessageBinding binding = SentMessageBinding.inflate(getLayoutInflater());
-                    return new MyRowHolder(binding.getRoot());
-                }else{
-                    ReceiveMessageBinding binding=ReceiveMessageBinding.inflate(getLayoutInflater());
-                    return new MyRowHolder(binding.getRoot());
-                }
-            }
-
-            //this initialize a viewholder to go at the row specified by the position parameter
-            @Override
-            public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                ChatMessage chatMessage=messages.get(position);
-                holder.messageText.setText(chatMessage.getMessage());
-                holder.timeText.setText(chatMessage.getTimeSent());
-            }
-
-            //this function returns an int specifying how many items to draw
-            @Override
-            public int getItemCount() {
-                return messages.size();
-            }
-
-            @Override
-            public int getItemViewType(int position) {
-                ChatMessage chatMessage=messages.get(position);
-                if(chatMessage.getIsSentButton()){
-                    return 0;
-                }else {
-                    return 1;
-                }
-            }
-        });
-
+        if (fl2 != null) {
+            fm.beginTransaction().replace(R.id.frameLayout1, lf).add(R.id.frameLayout2, df).commit();
+        }
 
     }
 
+    @Override
+    public void onItemSelected(int position, Bundle bundle) {
+           FrameLayout fl2=findViewById(R.id.frameLayout2);
+           FragmentManager fm=getSupportFragmentManager();
+           DetailsFragment df= new DetailsFragment();
+           df.setArguments(bundle);
 
-    class MyRowHolder extends RecyclerView.ViewHolder {
-        TextView messageText;
-        TextView timeText;
+           if(fl2==null ){
+               fm.beginTransaction().replace(R.id.frameLayout1,df).addToBackStack(null).commit();
+           }
 
-        public MyRowHolder(@NonNull View itemView) {
-            super(itemView);
-            messageText = itemView.findViewById(R.id.message);
-            timeText = itemView.findViewById(R.id.time);
-
-            itemView.setOnClickListener(clk -> {
-                        int position = getAbsoluteAdapterPosition();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ChatRoom.this);
-                        builder.setMessage(itemView.getResources().getString(R.string.question1)+" "+ messageText.getText())
-                                .setTitle(R.string.question)
-                                .setNegativeButton(R.string.no, (dialog, cl) -> {})
-                                .setPositiveButton(R.string.yes, (dialog, cl) -> {
-                                    Executor thread = Executors.newSingleThreadExecutor();
-                                    ChatMessage cm = messages.get(position);
-                                    thread.execute(() -> mDao.deleteMessage(cm));
-
-                        messages.remove(position);
-                        myAdapter.notifyItemRemoved(position);
-                        Snackbar.make(itemView,
-                                        itemView.getResources().getString(R.string.delete)+ " "+ messageText.getText(),
-                                        Snackbar.LENGTH_LONG)
-                                .setAction("Undo", click -> {
-                                    messages.add(position, cm);
-                                    myAdapter.notifyItemInserted(position);
-                                }).show();
-                    })
-                    .create().show();
-        });
-
-        }
+           if(fl2!=null){
+               fm.beginTransaction().replace(R.id.frameLayout2,df).commit();
+           }
     }
+
 }
