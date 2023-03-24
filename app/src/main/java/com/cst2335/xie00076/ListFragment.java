@@ -45,7 +45,7 @@ public class ListFragment extends Fragment {
     ChatRoomViewModel chatModel;
     private RecyclerView.Adapter myAdapter;
     ArrayList<ChatMessage> messages;
-    private ChatMessageDAO mDao;
+    //private ChatMessageDAO mDao;
     SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
     String currentTime = sdf.format(new Date());
 
@@ -84,7 +84,7 @@ public class ListFragment extends Fragment {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    messages.addAll(mDao.getAllMessages());
+                    messages.addAll(mdao.getAllMessages());
                 }
             }).start();
         }
@@ -99,7 +99,7 @@ public class ListFragment extends Fragment {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int position = getAdapterPosition();
+                        int position = getAbsoluteAdapterPosition();
                         Bundle bundle = new Bundle();
                         bundle.putInt("id", messages.get(position).getID());
                         bundle.putString("message", messages.get(position).getMessage());
@@ -173,7 +173,7 @@ public class ListFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            mDao.insertMessage(chat);
+                            mdao.insertMessage(chat);
                         }
                     }).start();
                 }
@@ -202,7 +202,7 @@ public class ListFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            mDao.insertMessage(chat);
+                            mdao.insertMessage(chat);
                         }
                     }).start();
                 }
